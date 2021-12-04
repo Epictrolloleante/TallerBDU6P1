@@ -16,6 +16,9 @@ public class U6P1 {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("HOLA");
+        ConsultaFrame frame = new ConsultaFrame();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
-    
+
 }
