@@ -19,7 +19,7 @@ import javax.swing.JComboBox;
 public class ConexionMysql {
 
     String usuario = "root",
-            contraseña = "",
+            contraseña = "root",
             host = "localhost",
             basedatos = "";
     Connection con;
