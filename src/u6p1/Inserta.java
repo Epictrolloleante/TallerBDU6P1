@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import u6p1.ClasesJ.ConexionMysql;
 
 /**
@@ -352,8 +353,13 @@ public class Inserta extends javax.swing.JFrame {
                 Nombre.setText("");
                 Sueldo.setText("");
             }
-
-            mysql.insertar(tabla[tab], values);
+            
+            if (mysql.insertar(tabla[tab], values)) {
+                    JOptionPane.showMessageDialog(this, "Insercion Exitosa");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Hubo un error en la insercion", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            
             mysql.desconectar();
         } catch (Exception e) {
             System.out.print("Error: \n"+e.getMessage());

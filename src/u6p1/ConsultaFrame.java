@@ -6,6 +6,7 @@ package u6p1;
 
 import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import u6p1.ClasesJ.ConexionMysql;
 
@@ -36,11 +37,16 @@ public class ConsultaFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            private static final long serialVersionUID = 1L;
+
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        };
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +75,11 @@ public class ConsultaFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Insertar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -78,8 +89,11 @@ public class ConsultaFrame extends javax.swing.JFrame {
         });
 
         jButton3.setText("Modificar");
-
-        jButton4.setText("jButton4");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,12 +113,10 @@ public class ConsultaFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,9 +135,7 @@ public class ConsultaFrame extends javax.swing.JFrame {
                         .addGap(2, 2, 2)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton4))
+                        .addComponent(jButton1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -151,6 +161,53 @@ public class ConsultaFrame extends javax.swing.JFrame {
         frame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione el registro a Eliminar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            mysql.conectar();
+            String condicion, tabla;
+            tabla = jComboBox1.getSelectedItem().toString();
+            if (tabla.equals("asignacion")) {
+                condicion = jTable1.getColumnName(0) + "='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "' "
+                        + "AND " + jTable1.getColumnName(1) + "='" + jTable1.getValueAt(jTable1.getSelectedRow(), 1) + "'";
+            } else {
+                condicion = jTable1.getColumnName(0) + "='" + jTable1.getValueAt(jTable1.getSelectedRow(), 0) + "'";
+            }
+            if (mysql.eliminar(tabla, condicion)) {
+                JOptionPane.showMessageDialog(this, "Eliminacion Exitosa");
+                DefaultTableModel model;
+                model = mysql.construirTabla(mysql.consultar(jComboBox1.getSelectedItem().toString()));
+                jTable1.setModel(model);
+            } else {
+                JOptionPane.showMessageDialog(this, "Hubo un error en la eliminacion", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione el registro a modificar", "Error", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String id;
+            if (jComboBox1.getSelectedItem().toString().equalsIgnoreCase("asignacion")) {
+                id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+                id += "," + jTable1.getValueAt(jTable1.getSelectedRow(), 1).toString();
+            } else {
+                id = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+            }
+            String tabla = jComboBox1.getSelectedItem().toString();
+            Modifica modifica = new Modifica(id, tabla);
+            modifica.setLocationRelativeTo(null);
+            modifica.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,7 +251,7 @@ public class ConsultaFrame extends javax.swing.JFrame {
         DefaultTableModel model;
         model = mysql.construirTabla(mysql.consultar(jComboBox1.getSelectedItem().toString()));
         jTable1.setModel(model);
-        jLabel1.setText("BASE DE DATOS: "+mysql.getBasedatos());
+        jLabel1.setText("BASE DE DATOS: " + mysql.getBasedatos());
         mysql.desconectar();
     }
 
@@ -202,7 +259,6 @@ public class ConsultaFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

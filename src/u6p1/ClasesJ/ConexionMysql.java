@@ -108,6 +108,19 @@ public class ConexionMysql {
             return null;
         }
     }
+    
+    public ResultSet consultaIndividual(String tabla,String id) {
+        try {
+            ResultSet rs;
+            Statement stmt = (Statement) con.createStatement();
+            String query = "SELECT * FROM " + tabla + " WHERE "+ id +";";
+            rs = stmt.executeQuery(query);
+            return rs;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionMysql.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public DefaultTableModel construirTabla(ResultSet rs) {
 
