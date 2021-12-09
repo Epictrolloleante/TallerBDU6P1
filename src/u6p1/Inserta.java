@@ -4,6 +4,7 @@
  */
 package u6p1;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ public class Inserta extends javax.swing.JFrame {
         Id_trabA = new javax.swing.JTextField();
         Id_obraA = new javax.swing.JTextField();
         Dias = new javax.swing.JTextField();
+        msg = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -59,6 +61,8 @@ public class Inserta extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         Sueldo = new javax.swing.JTextField();
         Oficio = new javax.swing.JComboBox<>();
+        msg1 = new javax.swing.JLabel();
+        msg2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -71,8 +75,17 @@ public class Inserta extends javax.swing.JFrame {
         jLabel11.setText("Días:");
 
         Id_trabA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Id_trabAKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 Id_trabAKeyTyped(evt);
+            }
+        });
+
+        Id_obraA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Id_obraAKeyTyped(evt);
             }
         });
 
@@ -97,15 +110,19 @@ public class Inserta extends javax.swing.JFrame {
                     .addComponent(Id_trabA, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(Id_obraA)
                     .addComponent(Dias))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(Id_trabA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(Id_trabA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -125,6 +142,12 @@ public class Inserta extends javax.swing.JFrame {
 
         jLabel8.setText("Tipo:");
 
+        Id_obra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Id_obraKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -140,7 +163,7 @@ public class Inserta extends javax.swing.JFrame {
                     .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Id_obra, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,6 +198,9 @@ public class Inserta extends javax.swing.JFrame {
         Fecha.setDateFormatString("y-MM-dd");
 
         Id_trab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                Id_trabKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 Id_trabKeyTyped(evt);
             }
@@ -187,6 +213,9 @@ public class Inserta extends javax.swing.JFrame {
         });
 
         Sueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SueldoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 SueldoKeyTyped(evt);
             }
@@ -208,13 +237,21 @@ public class Inserta extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Sueldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                        .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Id_trab, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(Oficio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Oficio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 190, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Sueldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Id_trab, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(msg1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(msg2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +259,8 @@ public class Inserta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(Id_trab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Id_trab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msg1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -230,7 +268,8 @@ public class Inserta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msg2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -262,16 +301,16 @@ public class Inserta extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(74, 74, 74)
                 .addComponent(jButton1)
                 .addGap(97, 97, 97))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,6 +436,79 @@ public class Inserta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void Id_obraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_obraKeyTyped
+        // TODO add your handling code here:
+        if(Id_obra.getText().length() >= 4){
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_Id_obraKeyTyped
+
+    private void Id_obraAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_obraAKeyTyped
+        // TODO add your handling code here:
+        if(Id_obraA.getText().length() >= 4){
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_Id_obraAKeyTyped
+
+    private void Id_trabAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_trabAKeyReleased
+        // TODO add your handling code here:
+        int id;
+        if("".equals(Id_trabA.getText())){
+            msg.setText("");
+            Id_trabA.setBackground(Color.white);
+        }
+        else{
+            id = Integer.parseInt(Id_trabA.getText());
+            if(id >= 10 && id <= 5000){
+                msg.setText("");
+                Id_trabA.setBackground(Color.white); 
+            }else{
+                msg.setText("Id_trab entre 10 y 5000");
+                Id_trabA.setBackground(Color.red); 
+            }
+        }
+    }//GEN-LAST:event_Id_trabAKeyReleased
+
+    private void Id_trabKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_trabKeyReleased
+        // TODO add your handling code here:
+        int id;
+        if("".equals(Id_trab.getText())){
+            msg1.setText("");
+            Id_trab.setBackground(Color.white);
+        }
+        else{
+            id = Integer.parseInt(Id_trab.getText());
+            if(id >= 10 && id <= 5000){
+                msg1.setText("");
+                Id_trab.setBackground(Color.white); 
+            }else{
+                msg1.setText("Id_trab entre 10 y 5000");
+                Id_trab.setBackground(Color.red); 
+            }
+        }
+    }//GEN-LAST:event_Id_trabKeyReleased
+
+    private void SueldoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SueldoKeyReleased
+        // TODO add your handling code here:
+        double sueldo;
+        if("".equals(Sueldo.getText())){
+            msg2.setText("");
+            Sueldo.setBackground(Color.white);
+        }
+        else{
+            sueldo = Double.parseDouble(Sueldo.getText());
+            if(sueldo >= 2000 && sueldo <= 40000){
+                msg2.setText("");
+                Sueldo.setBackground(Color.white);
+            }else{
+                msg2.setText("Sueldo_hr entre 2000 y 40000");
+                Sueldo.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_SueldoKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -461,6 +573,9 @@ public class Inserta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel msg;
+    private javax.swing.JLabel msg1;
+    private javax.swing.JLabel msg2;
     // End of variables declaration//GEN-END:variables
     private ConexionMysql mysql;
     private String values;

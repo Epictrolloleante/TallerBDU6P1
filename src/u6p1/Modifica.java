@@ -4,6 +4,7 @@
  */
 package u6p1;
 
+import java.awt.Color;
 import java.sql.*;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
@@ -121,6 +122,7 @@ public class Modifica extends javax.swing.JFrame {
         Nombre = new javax.swing.JTextField();
         Sueldo = new javax.swing.JTextField();
         Oficio = new javax.swing.JComboBox<>();
+        msg1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -156,7 +158,7 @@ public class Modifica extends javax.swing.JFrame {
                     .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Id_obra, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,6 +206,9 @@ public class Modifica extends javax.swing.JFrame {
         });
 
         Sueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                SueldoKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 SueldoKeyTyped(evt);
             }
@@ -225,13 +230,19 @@ public class Modifica extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Sueldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                        .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Id_trab, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(Oficio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Oficio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(200, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Sueldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                            .addComponent(Nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Id_trab, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(msg1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +258,8 @@ public class Modifica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msg1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -274,6 +286,12 @@ public class Modifica extends javax.swing.JFrame {
             }
         });
 
+        Id_obraA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Id_obraAKeyTyped(evt);
+            }
+        });
+
         Dias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 DiasKeyTyped(evt);
@@ -295,7 +313,7 @@ public class Modifica extends javax.swing.JFrame {
                     .addComponent(Id_trabA, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(Id_obraA)
                     .addComponent(Dias))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(282, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +356,7 @@ public class Modifica extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(80, 80, 80))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,6 +485,33 @@ public class Modifica extends javax.swing.JFrame {
         mysql.desconectar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void Id_obraAKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_obraAKeyTyped
+        // TODO add your handling code here:
+        if(Id_obraA.getText().length() >= 4){
+            evt.consume();
+            getToolkit().beep();
+        }
+    }//GEN-LAST:event_Id_obraAKeyTyped
+
+    private void SueldoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SueldoKeyReleased
+        // TODO add your handling code here:
+        double sueldo;
+        if("".equals(Sueldo.getText())){
+            msg1.setText("");
+            Sueldo.setBackground(Color.white);
+        }
+        else{
+            sueldo = Double.parseDouble(Sueldo.getText());
+            if(sueldo >= 2000 && sueldo <= 40000){
+                msg1.setText("");
+                Sueldo.setBackground(Color.white);
+            }else{
+                msg1.setText("Sueldo_hr entre 2000 y 40000");
+                Sueldo.setBackground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_SueldoKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -531,6 +576,7 @@ public class Modifica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel msg1;
     // End of variables declaration//GEN-END:variables
 String tabla;
 }

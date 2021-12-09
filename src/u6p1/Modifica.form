@@ -26,7 +26,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <EmptySpace pref="160" max="32767" attributes="0"/>
               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
           </Group>
@@ -89,7 +89,7 @@
                           <Component id="Tipo" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="Id_obra" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace pref="257" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -166,15 +166,24 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Fecha" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="Sueldo" alignment="0" pref="130" max="32767" attributes="0"/>
-                              <Component id="Nombre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="Id_trab" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="Fecha" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="Oficio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="200" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="Oficio" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="Sueldo" alignment="0" pref="130" max="32767" attributes="0"/>
+                                  <Component id="Nombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="Id_trab" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="msg1" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="124" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -195,6 +204,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="Sueldo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="msg1" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -257,6 +267,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="Sueldo">
               <Events>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SueldoKeyReleased"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="SueldoKeyTyped"/>
               </Events>
             </Component>
@@ -274,6 +285,8 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="msg1">
             </Component>
           </SubComponents>
         </Container>
@@ -302,7 +315,7 @@
                           <Component id="Id_obraA" alignment="0" max="32767" attributes="0"/>
                           <Component id="Dias" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="206" max="32767" attributes="0"/>
+                      <EmptySpace pref="282" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -354,6 +367,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="Id_obraA">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Id_obraAKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="Dias">
               <Events>
