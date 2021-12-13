@@ -286,6 +286,7 @@ public class Modifica extends javax.swing.JFrame {
             }
         });
 
+        Id_obraA.setEditable(false);
         Id_obraA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 Id_obraAKeyTyped(evt);
